@@ -4,7 +4,7 @@ import Column from './Column'
 import './index.css'
 
 // Import pattern here
-import Pattern from './patterns/cylon'
+import Pattern from './patterns/rainbow'
 
 class App extends Component {
   constructor(...args) {
