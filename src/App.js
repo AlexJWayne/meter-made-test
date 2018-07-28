@@ -38,6 +38,7 @@ class App extends Component {
       },
     })
 
+    this.pattern.setSensors(this.state.sensors)
     this.pattern.start()
 
     this.setState({
