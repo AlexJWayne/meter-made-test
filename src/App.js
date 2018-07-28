@@ -57,6 +57,7 @@ class App extends Component {
         <ul className="patterns">
           {Object.keys(patterns).map(name => (
             <li
+              key={name}
               className={this.state.currentPattern === name ? 'selected' : ''}
               onClick={() => this.onSelectPattern(name)}
             >
