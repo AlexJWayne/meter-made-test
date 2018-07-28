@@ -9,7 +9,8 @@ export default class Column extends Component {
 
   render() {
     return (
-      <div className="column">
+      <div className="column" onClick={this.props.onClick}>
+        {this.props.proximity && <div className="proximity-indicator" />}
         <div className="double-meter">
           <Meter leds={this.ledsForMeter(0)} />
           <Meter leds={this.ledsForMeter(1)} />

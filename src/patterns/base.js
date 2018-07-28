@@ -27,6 +27,12 @@ export default class Pattern {
           showAllColumns: () => console.log('showAllColumns'),
         }),
     )
+
+    this.sensors = mapTimes(NUM_COLUMNS, () => false)
+  }
+
+  setSensors(sensors) {
+    this.sensors = sensors
   }
 
   start() {

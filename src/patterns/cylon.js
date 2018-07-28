@@ -44,7 +44,13 @@ export default class Cylon extends Base {
     for (let col = 0; col < NUM_COLUMNS; col++) {
       for (let i = 0; i < NUM_METERS_PER_COLUMN; i++) {
         this.columns[col].SetMeterToRGB(i, 0, 0, 0)
-        this.columns[col].SetMeterToRGB(i, 255, 0, 0, mask)
+        this.columns[col].SetMeterToRGB(
+          i,
+          this.sensors[col] ? 0 : 255,
+          this.sensors[col] ? 255 : 0,
+          0,
+          mask,
+        )
       }
     }
 

@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
+      sensors: mapTimes(10, () => false),
     }
   }
 
@@ -31,11 +32,24 @@ class App extends Component {
     }
   }
 
+  toggleSensor(col) {
+    const sensors = this.state.sensors.map((sensor, i) => (i === col ? !sensor : sensor))
+    this.setState({ sensors })
+    this.pattern.setSensors(sensors)
+  }
+
   render() {
     return (
       <div className="app">
         {this.state.leds.map((leds, i) => {
-          return <Column key={i} leds={leds} />
+          return (
+            <Column
+              key={i}
+              leds={leds}
+              proximity={this.state.sensors[i]}
+              onClick={() => this.toggleSensor(i)}
+            />
+          )
         })}
       </div>
     )
