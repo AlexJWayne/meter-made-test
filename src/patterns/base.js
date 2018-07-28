@@ -2,7 +2,6 @@ import mapTimes from '../map-times'
 import hsv from '../hsv'
 
 export const NUM_COLUMNS = 10
-export const NUM_DISTANCE_SENSORS = 10
 export const NUM_LEDS_PER_METER = 4
 export const NUM_METERS_PER_COLUMN = 9
 export const NUM_LEDS_PER_COLUMN = NUM_LEDS_PER_METER * NUM_METERS_PER_COLUMN
