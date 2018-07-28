@@ -21,6 +21,31 @@ body {
   margin: 0 auto;
 }
 
+.patterns {
+  color: white;
+  list-style-type: none;
+  height: 30px;
+}
+
+.patterns li {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: lowercase;
+  letter-spacing: 0.1em;
+  background: #222;
+}
+
+.patterns li:hover {
+  background: #444;
+}
+
+.patterns .selected {
+  background: #888;
+}
+
 .column {
   float: left;
   width: 10%;

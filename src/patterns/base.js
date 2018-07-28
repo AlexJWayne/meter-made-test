@@ -14,6 +14,7 @@ export function delay(ms) {
 export default class Pattern {
   constructor({ showAllColumns, showColumn }) {
     this.showColumn = showColumn
+    this.running = false
 
     this.showAllColumns = () => {
       showAllColumns(this.columns)
@@ -36,12 +37,17 @@ export default class Pattern {
   }
 
   start() {
+    this.running = true
     setTimeout(async () => {
-      while (true) {
+      while (this.running) {
         await this.loop()
         await delay(1)
       }
     }, 10)
+  }
+
+  stop() {
+    this.running = false
   }
 
   async loop() {
