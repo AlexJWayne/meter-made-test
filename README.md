@@ -43,6 +43,10 @@ export default class Rainbow extends Base {
 }
 ```
 
+## Publishing the pattern
+
+Put your pattern in `src/patterns` and export it from `src/patterns/index.js` and it should then show up in the UI.
+
 ## Methods to override
 
 - `start()` Use this method to setup any instance variables required when the patterns begins to run. It is called exactly once when the patterns is switched to. _Make sure to call `super()`!_
