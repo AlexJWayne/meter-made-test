@@ -1,5 +1,7 @@
+// @flow
+
 // Take HSV in 0-255 range and return rgb
-export default function hsv(h, s, v) {
+export default function hsv(h: number, s: number, v: number): number[] {
   h = ((h % 256) / 255) * 360
   if (h < 0) h += 360
 

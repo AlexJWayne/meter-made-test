@@ -1,13 +1,24 @@
+// @flow
+
 import React, { Component } from 'react'
 import mapTimes from './map-times'
 import Column from './Column'
 import patterns from './patterns'
+import PatternBase from './pattern-base'
 import './index.css'
 
 const INITIAL_PATTERN = 'Rainbow'
 
-class App extends Component {
-  constructor(...args) {
+type State = {
+  leds: number[][][],
+  sensors: boolean[],
+  currentPattern: string,
+}
+
+class App extends Component<*, State> {
+  pattern: PatternBase
+
+  constructor(...args: any[]) {
     super(...args)
 
     this.state = {
@@ -19,23 +30,14 @@ class App extends Component {
     this.onSelectPattern(INITIAL_PATTERN)
   }
 
-  onShowColumn(col, colLeds) {
-    this.setState = {
-      leds: colLeds.map((leds, i) => (i === col ? colLeds : leds)),
-    }
-  }
-
-  onSelectPattern(name) {
+  onSelectPattern(name: string) {
     if (this.pattern) this.pattern.stop()
 
     const PatternClass = patterns[name]
-
-    this.pattern = new PatternClass({
-      showAllColumns: cols => {
-        this.setState({
-          leds: cols.map(col => col.leds),
-        })
-      },
+    this.pattern = new PatternClass(cols => {
+      this.setState({
+        leds: cols.map(col => col.leds),
+      })
     })
 
     this.pattern.setSensors(this.state.sensors)
@@ -46,7 +48,7 @@ class App extends Component {
     })
   }
 
-  toggleSensor(col) {
+  toggleSensor(col: number) {
     const sensors = this.state.sensors.map((sensor, i) => (i === col ? !sensor : sensor))
     this.setState({ sensors })
     this.pattern.setSensors(sensors)

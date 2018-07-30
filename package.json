@@ -17,6 +17,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "flow-bin": "^0.77.0",
     "gh-pages": "^1.2.0"
   }
 }

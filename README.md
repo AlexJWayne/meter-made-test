@@ -47,7 +47,7 @@ Put your pattern in `src/patterns` and export it from `src/patterns/index.js` an
 
 ## Methods to override
 
-- `start()` Use this method to setup any instance variables required when the patterns begins to run. It is called exactly once when the patterns is switched to. _Make sure to call `super()`!_
+- `start()` Use this method to setup any instance variables required when the patterns begins to run. It is called exactly once when the patterns is switched to.
 - `async loop()` Use this method to animate your pattern. Set led colors of all columns and then call `this.showAllColumns`.
 
 ## Pattern API
