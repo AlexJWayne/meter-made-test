@@ -13,6 +13,7 @@ type State = {
   leds: number[][][],
   sensors: boolean[],
   currentPattern: string,
+  is3d: boolean,
 }
 
 class App extends Component<*, State> {
@@ -28,6 +29,7 @@ class App extends Component<*, State> {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
       sensors: mapTimes(10, () => false),
       currentPattern: intialPattern,
+      is3d: false,
     }
 
     this.onSelectPattern(intialPattern)
@@ -59,10 +61,19 @@ class App extends Component<*, State> {
     this.pattern.setSensors(sensors)
   }
 
+  toggle3d() {
+    this.setState({
+      is3d: !this.state.is3d,
+    })
+  }
+
   render() {
     return (
       <div className="app">
         <ul className="patterns">
+          <li className={this.state.is3d ? 'selected' : ''} onClick={() => this.toggle3d()}>
+            3D
+          </li>
           {Object.keys(patterns).map(name => (
             <li
               key={name}
@@ -73,16 +84,20 @@ class App extends Component<*, State> {
             </li>
           ))}
         </ul>
-        {this.state.leds.map((leds, i) => {
-          return (
-            <Column
-              key={i}
-              leds={leds}
-              proximity={this.state.sensors[i]}
-              onClick={() => this.toggleSensor(i)}
-            />
-          )
-        })}
+        <div className={`columns ${this.state.is3d ? 'is3d' : ''}`}>
+          {this.state.leds.map((leds, i) => {
+            return (
+              <Column
+                key={i}
+                leds={leds}
+                proximity={this.state.sensors[i]}
+                angle={i / 10}
+                is3d={this.state.is3d}
+                onClick={() => this.toggleSensor(i)}
+              />
+            )
+          })}
+        </div>
       </div>
     )
   }

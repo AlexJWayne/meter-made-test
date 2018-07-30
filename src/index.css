@@ -8,6 +8,9 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+
+  perspective: 120em;
+  transform-style: preserve-3d;
 }
 
 *,
@@ -17,7 +20,6 @@ body {
 }
 
 .app {
-  width: 1600px;
   margin: 0 auto;
 }
 
@@ -42,16 +44,23 @@ body {
   background: #444;
 }
 
+.patterns li.selected:hover,
 .patterns .selected {
   background: #888;
 }
 
+.columns {
+  margin: 0 auto;
+}
+
 .column {
   float: left;
-  width: 10%;
+  width: 160px;
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  position: relative;
+  left: 80px;
 }
 
 .column:hover {
@@ -93,4 +102,15 @@ body {
   border-radius: 16px;
   background: black;
   filter: blur(2px);
+}
+
+.columns.is3d {
+  width: 0px;
+  margin: 160px auto;
+}
+
+.columns.is3d .column {
+  margin: 0 -160px;
+  position: relative;
+  left: 80px;
 }

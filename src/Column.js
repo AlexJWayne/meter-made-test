@@ -9,7 +9,15 @@ export default class Column extends Component {
 
   render() {
     return (
-      <div className="column" onClick={this.props.onClick}>
+      <div
+        className="column"
+        style={
+          this.props.is3d
+            ? { transform: `rotateY(${this.props.angle * 360}deg) translate3d(0, 0, 15em) ` }
+            : {}
+        }
+        onClick={this.props.onClick}
+      >
         {this.props.proximity && <div className="proximity-indicator" />}
         <div className="double-meter">
           <Meter leds={this.ledsForMeter(0)} />
