@@ -21,17 +21,22 @@ class App extends Component<*, State> {
   constructor(...args: any[]) {
     super(...args)
 
+    const lastPattern = localStorage.getItem('lastPattern')
+    const intialPattern = lastPattern && patterns[lastPattern] ? lastPattern : INITIAL_PATTERN
+
     this.state = {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
       sensors: mapTimes(10, () => false),
-      currentPattern: INITIAL_PATTERN,
+      currentPattern: intialPattern,
     }
 
-    this.onSelectPattern(INITIAL_PATTERN)
+    this.onSelectPattern(intialPattern)
   }
 
   onSelectPattern(name: string) {
     if (this.pattern) this.pattern.stop()
+
+    localStorage.setItem('lastPattern', name)
 
     const PatternClass = patterns[name]
     this.pattern = new PatternClass(cols => {
