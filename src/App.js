@@ -29,7 +29,7 @@ class App extends Component<*, State> {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
       sensors: mapTimes(10, () => false),
       currentPattern: intialPattern,
-      is3d: false,
+      is3d: true,
     }
 
     this.onSelectPattern(intialPattern)
