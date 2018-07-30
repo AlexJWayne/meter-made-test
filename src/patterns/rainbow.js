@@ -4,12 +4,14 @@ import Base, {
   NUM_LEDS_PER_METER,
   NUM_METERS_PER_COLUMN,
   NUM_LEDS_PER_COLUMN,
-  delay,
-} from './base'
+} from '../pattern-base'
 
 export default class Rainbow extends Base {
+  constructor(...args) {
+    super(...args)
+  }
+
   start() {
-    super.start()
     this.hue = 0
   }
 
@@ -18,7 +20,7 @@ export default class Rainbow extends Base {
     this.hue -= 2
 
     for (let col = 0; col < NUM_COLUMNS; col++) {
-      // Shift the hife column to column
+      // Shift the hue column to column
       const colHue = (255 * col) / NUM_COLUMNS
 
       // Make the colors whiter if the sensor is triggered.
@@ -33,16 +35,16 @@ export default class Rainbow extends Base {
 
         // Match the double meter leds.
         if (i == 0) {
-          this.columns[col].SetMeterToHSV(i, hue, sat, 255)
+          this.columns[col].meterHSV(i, hue, sat, 255)
         }
 
         // Set all other meters.
-        this.columns[col].SetMeterToHSV(i + 1, hue, sat, 255)
+        this.columns[col].meterHSV(i + 1, hue, sat, 255)
       }
     }
 
-    this.showAllColumns()
+    this.show()
 
-    await delay(25)
+    await this.delay(25)
   }
 }
