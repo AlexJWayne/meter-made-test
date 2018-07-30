@@ -61,9 +61,11 @@ Put your pattern in `src/patterns` and export it from `src/patterns/index.js` an
 
 ## Column API
 
-- `this.SetLEDToRGB(i, r, g, b)` Set the led an index `i` in this column to an rgb color.
-- `this.SetLEDToHSV(i, h, s, v)` Set the led an index `i` in this column to an hsv color.
-- `this.SetMeterToRGB(meterIndex, r, g, b, mask = 0b1111)` Set some/all leds in the meter at `meterIndex` to an rgb color.
-- `this.SetMeterToHSV(meterIndex, h, s, v, mask = 0b1111)` Set some/all leds in the meter at `meterIndex` to an hsv color.
+- `this.ledRGB(i, r, g, b)` Set the led an index `i` in this column to an rgb color.
+- `this.ledHSV(i, h, s, v)` Set the led an index `i` in this column to an hsv color.
+- `this.meterRGB(meterIndex, r, g, b, mask = 0b1111)` Set some/all leds in the meter at `meterIndex` to an rgb color.
+- `this.meterHSV(meterIndex, h, s, v, mask = 0b1111)` Set some/all leds in the meter at `meterIndex` to an hsv color.
+- `this.doubleMeterRGB(meterIndex, r, g, b)` Set all leds in the double meters to an rgb color.
+- `this.doubleMeterHSV(meterIndex, h, s, v)` Set all leds in the double meters to an hsv color.
 
 `mask` in the above methods is a 4 character binary value expressed in binary notation `0b1111` where each bit is `0` or `1`. Only leds in the meter with a `1` in the mask will be set.
