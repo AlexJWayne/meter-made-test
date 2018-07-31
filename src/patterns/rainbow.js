@@ -1,36 +1,36 @@
 import Base, {
-  NUM_COLUMNS,
+  COLS,
   NUM_DISTANCE_SENSORS,
-  NUM_LEDS_PER_METER,
-  NUM_METERS_PER_COLUMN,
-  NUM_LEDS_PER_COLUMN,
-} from '../pattern-base'
+  LEDS_PER_METER,
+  METERS,
+  LEDS
+} from "../pattern-base";
 
 export default class Rainbow extends Base {
   constructor(...args) {
-    super(...args)
+    super(...args);
   }
 
   start() {
-    this.hue = 0
+    this.hue = 0;
   }
 
   async loop() {
     // Advance hue for this next frame.
-    this.hue -= 2
+    this.hue -= 2;
 
-    for (let col = 0; col < NUM_COLUMNS; col++) {
+    for (let col = 0; col < COLS; col++) {
       // Make the colors whiter if the sensor is triggered.
-      const sat = this.sensors[col] ? 64 : 255
+      const sat = this.sensors[col] ? 64 : 255;
 
-      for (let i = 0; i < NUM_METERS_PER_COLUMN; i++) {
-        const hue = this.hue + this.x(col, i) + this.y(col, i)
-        this.columns[col].meterHSV(i, hue, sat, 255)
+      for (let i = 0; i < METERS; i++) {
+        const hue = this.hue + this.x(col, i) + this.y(col, i);
+        this.columns[col].meterHSV(i, hue, sat, 255);
       }
     }
 
-    this.show()
+    this.show();
 
-    await this.delay(25)
+    await this.delay(25);
   }
 }

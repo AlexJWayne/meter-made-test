@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import Meter from './Meter'
-import './index.css'
+import React, { Component } from "react";
+import Meter from "./Meter";
+import "./index.css";
 
 export default class Column extends Component {
   ledsForMeter(i) {
-    return this.props.leds.slice(i * 4, (i + 1) * 4)
+    return this.props.leds.slice(i * 4, (i + 1) * 4);
   }
 
   render() {
@@ -13,7 +13,10 @@ export default class Column extends Component {
         className="column"
         style={
           this.props.is3d
-            ? { transform: `rotateY(${this.props.angle * 360}deg) translate3d(0, 0, 15em) ` }
+            ? {
+                transform: `rotateY(${this.props.angle *
+                  360}deg) translate3d(0, 0, 15em) `
+              }
             : {}
         }
         onClick={this.props.onClick}
@@ -31,6 +34,6 @@ export default class Column extends Component {
         <Meter leds={this.ledsForMeter(7)} />
         <Meter leds={this.ledsForMeter(8)} />
       </div>
-    )
+    );
   }
 }
