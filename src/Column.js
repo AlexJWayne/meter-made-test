@@ -3,10 +3,6 @@ import Meter from "./Meter";
 import "./index.css";
 
 export default class Column extends Component {
-  ledsForMeter(i) {
-    return this.props.leds.slice(i * 4, (i + 1) * 4);
-  }
-
   render() {
     const angle = 180 + this.props.angle * 360;
     return (
@@ -15,7 +11,10 @@ export default class Column extends Component {
         style={
           this.props.is3d
             ? {
-                transform: `rotateY(${angle}deg) translate3d(0, 0, 15em) `
+                transform: `
+                  rotateY(${angle}deg)
+                  translate3d(0, 0, 15.5em)
+                `
               }
             : {}
         }
@@ -23,16 +22,16 @@ export default class Column extends Component {
       >
         {this.props.proximity && <div className="proximity-indicator" />}
         <div className="double-meter">
-          <Meter leds={this.ledsForMeter(0)} />
-          <Meter leds={this.ledsForMeter(1)} />
+          <Meter index={0} leds={this.props.leds} is3d={this.props.is3d} />
+          <Meter index={1} leds={this.props.leds} is3d={this.props.is3d} />
         </div>
-        <Meter leds={this.ledsForMeter(2)} />
-        <Meter leds={this.ledsForMeter(3)} />
-        <Meter leds={this.ledsForMeter(4)} />
-        <Meter leds={this.ledsForMeter(5)} />
-        <Meter leds={this.ledsForMeter(6)} />
-        <Meter leds={this.ledsForMeter(7)} />
-        <Meter leds={this.ledsForMeter(8)} />
+        <Meter index={2} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={3} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={4} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={5} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={6} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={7} leds={this.props.leds} is3d={this.props.is3d} />
+        <Meter index={8} leds={this.props.leds} is3d={this.props.is3d} />
       </div>
     );
   }
