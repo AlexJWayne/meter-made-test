@@ -99,6 +99,16 @@ export default class Pattern {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  abs(n: number): number {
+    return Math.abs(n);
+  }
+
+  constrain(n: number, min: number, max: number): number {
+    if (n < min) return min;
+    if (n > max) return max;
+    return n;
+  }
+
   // Return an 8 bit x coordinate a column and meter index.
   getX(col: number, meter: number): number {
     let offset = 0;

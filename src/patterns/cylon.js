@@ -1,53 +1,54 @@
+// @flow
+
 import Base, { COLS, LEDS_PER_METER, METERS, LEDS } from "../pattern-base";
 
 export default class Cylon extends Base {
+  pos: number;
+  hue: number;
+  climbing: boolean;
+
   start() {
-    this.state = 0;
+    this.pos = 0;
+    this.hue = 0;
+    this.climbing = true;
+  }
+
+  valueForPos(ledPos: number): number {
+    const val = 255 - this.abs(ledPos - this.pos) * 3; // int
+    return this.constrain(val, 0, 255);
   }
 
   async loop() {
-    this.state++;
-    if (this.state > 5) this.state = 0;
+    this.pos += 16 * (this.climbing ? 1 : -1);
+    if (this.pos > 247 - 16) this.climbing = false;
+    if (this.pos == 0) this.climbing = true;
 
-    let mask;
-    switch (this.state) {
-      case 0:
-        mask = 0b0100;
-        break;
-      case 1:
-        mask = 0b0010;
-        break;
-      case 2:
-        mask = 0b0001;
-        break;
-      case 3:
-        mask = 0b0010;
-        break;
-      case 4:
-        mask = 0b0100;
-        break;
-      case 5:
-        mask = 0b1000;
-        break;
-      default:
-        break;
-    }
+    this.hue++;
+
+    const val1 = this.valueForPos(0);
+    const val2 = this.valueForPos((255 * 1) / 3);
+    const val3 = this.valueForPos((255 * 2) / 3);
+    const val4 = this.valueForPos(255);
 
     for (let col = 0; col < COLS; col++) {
-      for (let i = 0; i < METERS; i++) {
-        this.columns[col].meterRGB(i, 0, 0, 0);
-        this.columns[col].meterRGB(
-          i,
-          this.sensors[col] ? 0 : 255,
-          this.sensors[col] ? 255 : 0,
-          0,
-          mask
-        );
+      for (let meter = 0; meter < METERS; meter++) {
+        const hue = this.hue + this.getX(col, meter);
+        if (this.sensors[col]) {
+          this.columns[col].meterHSV(meter, hue, 127, 255 - val1, 0b1000);
+          this.columns[col].meterHSV(meter, hue, 127, 255 - val2, 0b0100);
+          this.columns[col].meterHSV(meter, hue, 127, 255 - val3, 0b0010);
+          this.columns[col].meterHSV(meter, hue, 127, 255 - val4, 0b0001);
+        } else {
+          this.columns[col].meterHSV(meter, hue, 127, val1, 0b1000);
+          this.columns[col].meterHSV(meter, hue, 127, val2, 0b0100);
+          this.columns[col].meterHSV(meter, hue, 127, val3, 0b0010);
+          this.columns[col].meterHSV(meter, hue, 127, val4, 0b0001);
+        }
       }
     }
 
     this.show();
 
-    await this.delay(200);
+    await this.delay(20);
   }
 }
