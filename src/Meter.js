@@ -5,9 +5,9 @@ import "./index.css";
 export default class Meter extends Component {
   color() {
     const rgb = [
-      this.props.leds.reduce((total, v) => total + v[0], 0) / 4 / 2,
-      this.props.leds.reduce((total, v) => total + v[1], 0) / 4 / 2,
-      this.props.leds.reduce((total, v) => total + v[2], 0) / 4 / 2
+      (this.props.leds.reduce((total, v) => total + v[0], 0) / 4) * 0.8,
+      (this.props.leds.reduce((total, v) => total + v[1], 0) / 4) * 0.8,
+      (this.props.leds.reduce((total, v) => total + v[2], 0) / 4) * 0.8
     ];
 
     return `rgb(${rgb.join(",")})`;

@@ -20,13 +20,18 @@ export default class Sine extends Base {
       for (let meter = 0; meter < METERS; meter++) {
         const x = this.getX(col, meter);
         const y = this.getY(col, meter);
-        const sin = this.sin8(x - this.val * (this.sensors[col] ? 8 : 1));
+        const sin = this.sin8(x - this.val * (this.sensors[col] ? 6 : 1));
 
-        let val = this.constrain(255 - this.abs(y - sin), 0, 255);
-        val = this.map(val, 180, 230, 0, 255);
+        let distance = this.constrain(255 - this.abs(y - sin), 0, 255);
+
+        let val = this.map(distance, 140, 200, 0, 255);
         val = this.constrain(val, 0, 255);
 
-        this.columns[col].meterHSV(meter, this.hue + x, 255, val);
+        // Give a thin whitened core.
+        let sat = this.map(distance, 200, 255, 255, 64);
+        sat = this.constrain(sat, 0, 255);
+
+        this.columns[col].meterHSV(meter, this.hue + x, sat, val);
       }
     }
 
