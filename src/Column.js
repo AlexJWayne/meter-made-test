@@ -8,14 +8,14 @@ export default class Column extends Component {
   }
 
   render() {
+    const angle = 180 + this.props.angle * 360;
     return (
       <div
         className="column"
         style={
           this.props.is3d
             ? {
-                transform: `rotateY(${-180 +
-                  this.props.angle * 360}deg) translate3d(0, 0, 15em) `
+                transform: `rotateY(${angle}deg) translate3d(0, 0, 15em) `
               }
             : {}
         }
