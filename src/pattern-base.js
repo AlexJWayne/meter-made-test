@@ -76,6 +76,8 @@ export default class Pattern {
     return Math.round(((sin + 1) / 2) * 255);
   }
 
+  // Re-maps a number from one range to another.
+  // https://www.arduino.cc/reference/en/language/functions/math/map/
   map(
     x: number,
     in_min: number,
@@ -87,6 +89,7 @@ export default class Pattern {
   }
 
   // Return a random integer. Call with either `random(max)` or `random(min, max)`.
+  // https://www.arduino.cc/reference/en/language/functions/random-numbers/random/
   random(...args: number[]): number {
     let min, max;
     if (args.length === 1) {
@@ -99,10 +102,13 @@ export default class Pattern {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  // https://www.arduino.cc/reference/en/language/functions/math/abs/
   abs(n: number): number {
     return Math.abs(n);
   }
 
+  // Constrains a number to be within a range.
+  // https://www.arduino.cc/reference/en/language/functions/math/constrain/
   constrain(n: number, min: number, max: number): number {
     if (n < min) return min;
     if (n > max) return max;
