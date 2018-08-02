@@ -14,12 +14,17 @@ export default class Rainbow extends Base {
     this.hue -= 2;
 
     for (let col = 0; col < COLS; col++) {
-      // Make the colors whiter if the sensor is triggered.
-      const sat = this.sensors[col] ? 64 : 255;
-
       for (let i = 0; i < METERS; i++) {
         const hue = this.hue + this.getX(col, i) + this.getY(col, i);
-        this.columns[col].meterHSV(i, hue, sat, 255);
+
+        if (this.sensors[col]) {
+          this.columns[col].meterHSV(i, hue + 255 * (0 / 4), 255, 255, 0b1000);
+          this.columns[col].meterHSV(i, hue + 255 * (1 / 4), 255, 255, 0b0100);
+          this.columns[col].meterHSV(i, hue + 255 * (2 / 4), 255, 255, 0b0010);
+          this.columns[col].meterHSV(i, hue + 255 * (3 / 4), 255, 255, 0b0001);
+        } else {
+          this.columns[col].meterHSV(i, hue, 255, 255);
+        }
       }
     }
 
