@@ -3,10 +3,10 @@
 ## Constants
 
 ```js
-COLS = 10
-LEDS_PER_METER = 4
-METERS = 9
-LEDS = 36
+COLS = 10;
+LEDS_PER_METER = 4;
+METERS = 9;
+LEDS = 36;
 ```
 
 ## Use the base class
@@ -14,29 +14,23 @@ LEDS = 36
 Create and export a class that inherits from the patterns base. And while you're at it, import whatever constants you need.
 
 ```js
-import Base, {
-  COLS,
-  NUM_DISTANCE_SENSORS,
-  LEDS_PER_METER,
-  METERS,
-  LEDS,
-} from './base'
+import Base, { COLS, METERS } from "./base";
 
 export default class Rainbow extends Base {
   start() {
-    this.whateverIsNeeded = '<3'
+    this.whateverIsNeeded = "<3";
   }
 
   async loop() {
     // Set all meters to red.
     for (let col = 0; col < COLS; col++) {
       for (let meter = 0; meter < METERS - 1; meter++) {
-        this.columns[col].SetMeterToHSV(meter, 0, 255, 255)
+        this.columns[col].SetMeterToHSV(meter, 0, 255, 255);
       }
     }
 
     // Delay until next frame.
-    await this.delay(25)
+    await this.delay(25);
   }
 }
 ```

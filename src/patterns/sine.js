@@ -18,8 +18,8 @@ export default class Sine extends Base {
 
     for (let col = 0; col < COLS; col++) {
       for (let i = 0; i < METERS; i++) {
-        const x = this.x(col, i);
-        const y = this.y(col, i);
+        const x = this.getX(col, i);
+        const y = this.getY(col, i);
         const sin = this.sin8(x - this.val) + 30;
 
         if (y < sin - 30) {

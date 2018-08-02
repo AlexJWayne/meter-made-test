@@ -86,8 +86,21 @@ export default class Pattern {
     return ((x - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
   }
 
+  // Return a random integer. Call with either `random(max)` or `random(min, max)`.
+  random(...args: number[]): number {
+    let min, max;
+    if (args.length === 1) {
+      min = 0;
+      max = args[0];
+    } else {
+      [min, max] = args;
+    }
+
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
   // Return an 8 bit x coordinate a column and meter index.
-  x(col: number, meter: number): number {
+  getX(col: number, meter: number): number {
     let offset = 0;
     if (meter <= 1) offset = 255 / COLS / 3;
     if (meter == 0) offset = -offset;
@@ -98,7 +111,7 @@ export default class Pattern {
   }
 
   // Return an 8 bit y coordinate a column and meter index.
-  y(col: number, meter: number): number {
+  getY(col: number, meter: number): number {
     if (meter <= 1) return 255;
     return Math.round(((METERS - meter - 1) * 255) / (METERS - 2));
   }

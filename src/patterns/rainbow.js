@@ -1,10 +1,4 @@
-import Base, {
-  COLS,
-  NUM_DISTANCE_SENSORS,
-  LEDS_PER_METER,
-  METERS,
-  LEDS
-} from "../pattern-base";
+import Base, { COLS, METERS } from "../pattern-base";
 
 export default class Rainbow extends Base {
   constructor(...args) {
@@ -24,7 +18,7 @@ export default class Rainbow extends Base {
       const sat = this.sensors[col] ? 64 : 255;
 
       for (let i = 0; i < METERS; i++) {
-        const hue = this.hue + this.x(col, i) + this.y(col, i);
+        const hue = this.hue + this.getX(col, i) + this.getY(col, i);
         this.columns[col].meterHSV(i, hue, sat, 255);
       }
     }

@@ -1,10 +1,4 @@
-import Base, {
-  COLS,
-  NUM_DISTANCE_SENSORS,
-  LEDS_PER_METER,
-  METERS,
-  LEDS
-} from "../pattern-base";
+import Base, { COLS, LEDS_PER_METER, METERS, LEDS } from "../pattern-base";
 
 export default class Cylon extends Base {
   start() {
