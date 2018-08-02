@@ -28,7 +28,7 @@ export default class Column {
   ) {
     for (let i = 0; i < LEDS_PER_METER; i++) {
       const ledIndex = meterIndex * LEDS_PER_METER + i;
-      if (mask & (1 << i)) {
+      if (mask & (1 << (3 - i))) {
         this.ledRGB(ledIndex, r, g, b);
       }
     }

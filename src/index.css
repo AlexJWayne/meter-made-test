@@ -105,6 +105,7 @@ body {
   border-radius: 16px;
   background: black;
   filter: blur(2px);
+  mix-blend-mode: lighten;
 }
 
 .columns.is3d {
