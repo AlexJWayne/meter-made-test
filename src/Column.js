@@ -14,8 +14,8 @@ export default class Column extends Component {
         style={
           this.props.is3d
             ? {
-                transform: `rotateY(${this.props.angle *
-                  360}deg) translate3d(0, 0, 15em) `
+                transform: `rotateY(${-180 +
+                  this.props.angle * 360}deg) translate3d(0, 0, 15em) `
               }
             : {}
         }

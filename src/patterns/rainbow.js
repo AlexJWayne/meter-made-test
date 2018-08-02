@@ -1,10 +1,6 @@
 import Base, { COLS, METERS } from "../pattern-base";
 
 export default class Rainbow extends Base {
-  constructor(...args) {
-    super(...args);
-  }
-
   start() {
     this.hue = 0;
   }
