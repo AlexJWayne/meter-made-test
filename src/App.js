@@ -30,7 +30,7 @@ class App extends Component<*, State> {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
       sensors: mapTimes(10, () => false),
       currentPattern: intialPattern,
-      is3d: true
+      is3d: localStorage.getItem("is3d") !== "false"
     };
 
     this.onSelectPattern(intialPattern);
@@ -65,6 +65,8 @@ class App extends Component<*, State> {
   }
 
   toggle3d() {
+    localStorage.setItem("is3d", !this.state.is3d ? "true" : "false");
+    console.log(localStorage.getItem("is3d"));
     this.setState({
       is3d: !this.state.is3d
     });
