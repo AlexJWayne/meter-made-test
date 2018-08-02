@@ -14,22 +14,19 @@ export default class Sine extends Base {
 
   async loop() {
     this.hue += 1;
-    this.val += 1;
+    this.val += 2;
 
     for (let col = 0; col < COLS; col++) {
-      for (let i = 0; i < METERS; i++) {
-        const x = this.getX(col, i);
-        const y = this.getY(col, i);
-        const sin = this.sin8(x - this.val) + 30;
+      for (let meter = 0; meter < METERS; meter++) {
+        const x = this.getX(col, meter);
+        const y = this.getY(col, meter);
+        const sin = this.sin8(x - this.val * (this.sensors[col] ? 8 : 1));
 
-        if (y < sin - 30) {
-          this.columns[col].meterHSV(i, this.hue + x, 255, 255);
-        } else if (y < sin + 30) {
-          const brightness = this.map(sin, y - 30, y + 30, 0, 255);
-          this.columns[col].meterHSV(i, this.hue + x, 255, brightness);
-        } else {
-          this.columns[col].meterRGB(i, 0, 0, 0);
-        }
+        let val = this.constrain(255 - this.abs(y - sin), 0, 255);
+        val = this.map(val, 180, 230, 0, 255);
+        val = this.constrain(val, 0, 255);
+
+        this.columns[col].meterHSV(meter, this.hue + x, 255, val);
       }
     }
 
