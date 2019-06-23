@@ -18,9 +18,7 @@ export default class Column extends Component {
               }
             : {}
         }
-        onClick={this.props.onClick}
       >
-        {this.props.proximity && <div className="proximity-indicator" />}
         <div className="double-meter">
           <Meter index={0} leds={this.props.leds} is3d={this.props.is3d} />
           <Meter index={1} leds={this.props.leds} is3d={this.props.is3d} />

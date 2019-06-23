@@ -11,7 +11,6 @@ export const LEDS = LEDS_PER_METER * METERS;
 
 export default class Pattern {
   columns: PatternColumn[];
-  sensors: boolean[];
   running: boolean;
   show: () => void;
 
@@ -19,11 +18,6 @@ export default class Pattern {
     this.running = false;
     this.show = () => showAllColumns(this.columns);
     this.columns = mapTimes(COLS, i => new PatternColumn());
-    this.sensors = mapTimes(COLS, () => false);
-  }
-
-  setSensors(sensors: boolean[]) {
-    this.sensors = sensors;
   }
 
   begin() {

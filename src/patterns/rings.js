@@ -42,17 +42,6 @@ export default class Rings extends Base {
         val = this.constrain(val, 0, 255);
 
         this.columns[col].meterHSV(meter, this.hue, 255, val);
-
-        // Flicker center of column when you get close.
-        if (this.sensors[col]) {
-          this.columns[col].meterHSV(
-            meter,
-            this.hue,
-            this.random(64, 255),
-            this.random(190, 255),
-            0b0110
-          );
-        }
       }
     }
 

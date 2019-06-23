@@ -20,7 +20,7 @@ export default class Sine extends Base {
       for (let meter = 0; meter < METERS; meter++) {
         const x = this.getX(col, meter);
         const y = this.getY(col, meter);
-        const sin = this.sin8(x - this.val * (this.sensors[col] ? 6 : 1));
+        const sin = this.sin8(x - this.val);
 
         let distance = this.constrain(255 - this.abs(y - sin), 0, 255);
 

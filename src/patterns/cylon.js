@@ -33,17 +33,10 @@ export default class Cylon extends Base {
     for (let col = 0; col < COLS; col++) {
       for (let meter = 0; meter < METERS; meter++) {
         const hue = this.hue + this.getX(col, meter);
-        if (this.sensors[col]) {
-          this.columns[col].meterHSV(meter, hue, 127, 255 - val1, 0b1000);
-          this.columns[col].meterHSV(meter, hue, 127, 255 - val2, 0b0100);
-          this.columns[col].meterHSV(meter, hue, 127, 255 - val3, 0b0010);
-          this.columns[col].meterHSV(meter, hue, 127, 255 - val4, 0b0001);
-        } else {
-          this.columns[col].meterHSV(meter, hue, 127, val1, 0b1000);
-          this.columns[col].meterHSV(meter, hue, 127, val2, 0b0100);
-          this.columns[col].meterHSV(meter, hue, 127, val3, 0b0010);
-          this.columns[col].meterHSV(meter, hue, 127, val4, 0b0001);
-        }
+        this.columns[col].meterHSV(meter, hue, 127, val1, 0b1000);
+        this.columns[col].meterHSV(meter, hue, 127, val2, 0b0100);
+        this.columns[col].meterHSV(meter, hue, 127, val3, 0b0010);
+        this.columns[col].meterHSV(meter, hue, 127, val4, 0b0001);
       }
     }
 

@@ -39,16 +39,6 @@ export default class Twinkle extends Base {
       }
     }
 
-    // If a sensor is triggered, start twinkling at a greater rate on that column.
-    for (let col = 0; col < COLS; col++) {
-      if (this.sensors[col] && this.random(100) < 50) {
-        const newTwinkleIndex = this.random(col * METERS, (col + 1) * METERS);
-        if (this.twinkles[newTwinkleIndex] == 0) {
-          this.twinkles[newTwinkleIndex] = 1;
-        }
-      }
-    }
-
     // Set all leds colors.
     for (let col = 0; col < COLS; col++) {
       for (let meter = 0; meter < METERS; meter++) {

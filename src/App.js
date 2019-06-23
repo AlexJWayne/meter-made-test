@@ -11,7 +11,6 @@ const INITIAL_PATTERN = "Rainbow";
 
 type State = {
   leds: number[][][],
-  sensors: boolean[],
   currentPattern: string,
   is3d: boolean
 };
@@ -28,7 +27,6 @@ class App extends Component<*, State> {
 
     this.state = {
       leds: mapTimes(10, col => mapTimes(90, led => [0, 0, 0])),
-      sensors: mapTimes(10, () => false),
       currentPattern: intialPattern,
       is3d: localStorage.getItem("is3d") !== "false"
     };
@@ -47,21 +45,11 @@ class App extends Component<*, State> {
         leds: cols.map(col => col.leds)
       });
     });
-
-    this.pattern.setSensors(this.state.sensors);
     this.pattern.begin();
 
     this.setState({
       currentPattern: name
     });
-  }
-
-  toggleSensor(col: number) {
-    const sensors = this.state.sensors.map(
-      (sensor, i) => (i === col ? !sensor : sensor)
-    );
-    this.setState({ sensors });
-    this.pattern.setSensors(sensors);
   }
 
   toggle3d() {
@@ -98,10 +86,8 @@ class App extends Component<*, State> {
               <Column
                 key={i}
                 leds={leds}
-                proximity={this.state.sensors[i]}
                 angle={i / 10}
                 is3d={this.state.is3d}
-                onClick={() => this.toggleSensor(i)}
               />
             );
           })}

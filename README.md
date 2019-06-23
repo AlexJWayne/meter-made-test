@@ -49,7 +49,6 @@ Put your pattern in `src/patterns` and export it from `src/patterns/index.js` an
 - `this.showAllColumns()` Display all the work you just did.
 - `await this.delay()` Equivalent to Arduino's delay function. Call it at the end of your pattern with a value that makes sense. _Make sure you use `await`!_
 - `this.columns` An array of column objects that you will call methods on to change led colors.
-- `this.sensors` An array of booleans, one per column. The value for that column will be `true` if the proximity sensor is triggered.
 - `this.sin8(byte)` 8 bit sine function. Returns 0-255.
 - `this.cos8(byte)` 8 bit cosine function. Returns 0-255.
 

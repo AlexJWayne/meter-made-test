@@ -66,18 +66,6 @@ body {
   transform-style: preserve-3d;
 }
 
-.column:hover .meter {
-  box-shadow: 0 0 20px white;
-}
-
-.proximity-indicator {
-  width: 10px;
-  height: 10px;
-  margin: 0 auto -10px;
-  background: white;
-  border-radius: 10px;
-}
-
 .double-meter .meter {
   float: left;
   clear: none;
@@ -104,7 +92,6 @@ body {
 
   border-radius: 16px;
   background: black;
-  filter: blur(2px);
   mix-blend-mode: lighten;
 }
 
